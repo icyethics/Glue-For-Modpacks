@@ -11,12 +11,15 @@ Mutils.config = SMODS.current_mod.config
 
 local original_start_run = Game.start_run
 function Game:start_run(args)
-
-    -- Set the starting size of the shop
     original_start_run(self, args)
+    -- Set the starting size of the shop
     SMODS.change_voucher_limit(Mutils.config.shop_voucher_slots)
     SMODS.change_booster_limit(Mutils.config.shop_booster_slots)
     change_shop_size(Mutils.config.shop_joker_slots)
+
+    -- Adjust card area sizes if desired
+    G.consumeables.config.card_limit = G.consumeables.config.card_limit + Mutils.config.consumeable_slots
+    G.jokers.config.card_limit = G.jokers.config.card_limit + Mutils.config.joker_slots
 
     -- Set the starting spawn rate of Jokers
     local total_rate = G.GAME.joker_rate + G.GAME.playing_card_rate
