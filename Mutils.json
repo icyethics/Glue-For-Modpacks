@@ -1,6 +1,6 @@
 {
     "id": "mutils",
-    "name": "Modpack Utilities",
+    "name": "Glue for Modpacks",
     "author": ["IcyEthics"],
     "description": "Utilities for playing with many content mods",
     "prefix": "mutils",
