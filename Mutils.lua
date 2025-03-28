@@ -1,5 +1,5 @@
 Mutils = {}
-mod_dir = ''..SMODS.current_mod.path
+Mutils.mod_dir = ''..SMODS.current_mod.path
 Mutils.config = SMODS.current_mod.config
 
 -- local igo = Game.init_game_object
