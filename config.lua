@@ -1,12 +1,12 @@
 return {
     -- Shop Slots
-    ["shop_joker_slots"] = 1,
+    ["shop_joker_slots"] = 3,
     ["shop_voucher_slots"] = 1,
     ["shop_booster_slots"] = 1,
 
     -- Card Area Slots
-    ["consumeable_slots"] = 0,
-    ["joker_slots"] = 0,
+    ["consumeable_slots"] = 3,
+    ["joker_slots"] = 3,
 
     -- This is the default spawn rate
     ["joker_rate"] = 0.71 -- or 20/28 the base chance
