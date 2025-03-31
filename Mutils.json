@@ -6,7 +6,7 @@
     "prefix": "mutils",
     "main_file": "Mutils.lua",
     "badge_colour": "1b61ad",
-    "version": "0.0.2-ALPHA",
+    "version": "0.0.3-ALPHA",
     "dependencies": ["Steamodded (>=1.0.0~BETA-0303a)", "Lovely (>=0.7)"]
     
 }
