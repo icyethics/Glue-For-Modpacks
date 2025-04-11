@@ -3,6 +3,7 @@
  - Change the # of slots of shop areas
  - Change the # of joker/consumable slots
  - Change the default spawn rate of jokers (useful if many mods add consumable types that their combined rates start to dwarf the joker rate)
+ - Change the rarity chances
 
 # How To Use
 By default, the added slots for all factors will be set to 0. You can change these in the mod config. The Joker rate is the percentage of cards that will be a joker in the shop.

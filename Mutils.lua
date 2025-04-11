@@ -2,13 +2,6 @@ Mutils = {}
 Mutils.mod_dir = ''..SMODS.current_mod.path
 Mutils.config = SMODS.current_mod.config
 
--- local igo = Game.init_game_object
--- Game.init_game_object = function(self)
---     local ret = igo(self)
-
---     return ret
--- end
-
 local igo = Game.init_game_object
 Game.init_game_object = function(self)
     local ret = igo(self)
@@ -28,8 +21,20 @@ Game.init_game_object = function(self)
         total_rate = total_rate + ret[v:lower()..'_rate']
     end
 
+    -- added functionality
+    ret = Mutils.set_rarity_weights(ret)
+
     ret.joker_rate = total_rate * (Mutils.config.joker_rate / 100)
 
+    return ret
+end
+
+function Mutils.set_rarity_weights(ret)
+    for _, _rarity in ipairs(SMODS.ObjectTypes.Joker.rarities) do
+        if Mutils.config["rarity_rate_" .. _rarity.key] then
+            _rarity.weight = (Mutils.config["rarity_rate_" .. _rarity.key] / 100)
+        end
+    end
     return ret
 end
 
@@ -48,6 +53,12 @@ local card_area_boxes = {
 
 local spawn_rate_boxes = {
     {ref_value = "joker_rate", label = "glue_settings_joker_rate", min = 0, max = 100},
+}
+
+local rarity_rates = {
+    {ref_value = "rarity_rate_Common", label = "glue_settings_rarity_rate_Common", min = 0, max = 100},
+    {ref_value = "rarity_rate_Uncommon", label = "glue_settings_rarity_rate_Uncommon", min = 0, max = 100},
+    {ref_value = "rarity_rate_Rare", label = "glue_settings_rarity_rate_Rare", min = 0, max = 100}
 }
 
 local create_menu_sliders = function(parent, sliders)
@@ -79,6 +90,9 @@ glueconfig = function()
     local spawn_rate_boxes_settings = {n = G.UIT.R, config = {align = "tm", padding = 0.05, scale = 0.75, colour = G.C.CLEAR,}, nodes = {}}
 	create_menu_sliders(spawn_rate_boxes_settings, spawn_rate_boxes)
 
+    local rarity_rates_settings = {n = G.UIT.R, config = {align = "tm", padding = 0.05, scale = 0.75, colour = G.C.CLEAR,}, nodes = {}}
+	create_menu_sliders(rarity_rates_settings, rarity_rates)
+
     local config_nodes = {
         {
             n = G.UIT.R,
@@ -89,7 +103,8 @@ glueconfig = function()
             nodes = {
                 shop_boxes_settings,
                 card_area_boxes_settings,
-                spawn_rate_boxes_settings
+                spawn_rate_boxes_settings,
+                rarity_rates_settings,
             }
         }
     }
