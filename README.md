@@ -1,4 +1,4 @@
-# Glue For Modpacks V.0.0.3
+# Glue For Modpacks V.0.0.4
  Balatro Mod to add utilities that may make playing with multiple content mods more enjoyable. Currently, the scope is small, but if other additions seem beneficial, those will be added too.
  - Change the # of slots of shop areas
  - Change the # of joker/consumable slots
