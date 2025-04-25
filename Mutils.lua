@@ -2,19 +2,21 @@ Mutils = {}
 Mutils.mod_dir = ''..SMODS.current_mod.path
 Mutils.config = SMODS.current_mod.config
 
+
 local igo = Game.init_game_object
 Game.init_game_object = function(self)
     local ret = igo(self)
     -- Set the starting size of the shop
-    ret.modifiers.extra_boosters = (ret.modifiers.extra_boosters or 0) + Mutils.config.shop_booster_slots
-    ret.modifiers.extra_vouchers = (ret.modifiers.extra_vouchers or 0) + Mutils.config.shop_voucher_slots
-    ret.shop.joker_max = ret.shop.joker_max + Mutils.config.shop_joker_slots
+
+    ret.modifiers.extra_boosters = (ret.modifiers.extra_boosters or 0) + round_number(Mutils.config.shop_booster_slots, 0)
+    ret.modifiers.extra_vouchers = (ret.modifiers.extra_vouchers or 0) + round_number(Mutils.config.shop_voucher_slots, 0)
+    ret.shop.joker_max = ret.shop.joker_max + round_number(Mutils.config.shop_joker_slots, 0)
     -- change_shop_size(Mutils.config.shop_joker_slots)
 
     -- Adjust card area sizes if desired
 
-    ret.starting_params.consumable_slots = (ret.starting_params.consumable_slots or 0) + Mutils.config.consumeable_slots
-    ret.starting_params.joker_slots = (ret.starting_params.joker_slots or 0) + Mutils.config.joker_slots
+    ret.starting_params.consumable_slots = (ret.starting_params.consumable_slots or 0) + round_number(Mutils.config.consumeable_slots,0)
+    ret.starting_params.joker_slots = (ret.starting_params.joker_slots or 0) + round_number(Mutils.config.joker_slots,0)
     -- Set the starting spawn rate of Jokers
     local total_rate = ret.joker_rate + ret.playing_card_rate
     for _,v in ipairs(SMODS.ConsumableType.ctype_buffer) do
