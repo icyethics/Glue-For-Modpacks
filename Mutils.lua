@@ -18,7 +18,7 @@ Game.init_game_object = function(self)
     ret.starting_params.consumable_slots = (ret.starting_params.consumable_slots or 0) + round_number(Mutils.config.consumeable_slots,0)
     ret.starting_params.joker_slots = (ret.starting_params.joker_slots or 0) + round_number(Mutils.config.joker_slots,0)
     -- Set the starting spawn rate of Jokers
-    local total_rate = ret.joker_rate + ret.playing_card_rate
+    local total_rate = ret.playing_card_rate
     for _,v in ipairs(SMODS.ConsumableType.ctype_buffer) do
         total_rate = total_rate + ret[v:lower()..'_rate']
     end
@@ -26,7 +26,7 @@ Game.init_game_object = function(self)
     -- added functionality
     ret = Mutils.set_rarity_weights(ret)
 
-    ret.joker_rate = total_rate * (Mutils.config.joker_rate / 100)
+    ret.joker_rate = total_rate * (Mutils.config.joker_rate / 100) / (1.00001 - Mutils.config.joker_rate / 100)
 
     return ret
 end
